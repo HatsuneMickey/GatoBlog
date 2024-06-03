@@ -1,0 +1,311 @@
+/* ### O que falta (06/01/2024) ### */
+/* O site funciona bem, está pronto para ser enviado. O que pode ser feito para melhorar seria revisar as variáveis inúteis
+e refatorar o código para incluir melhores valores de largura e altura em certos elementos (sidebar, tamanho total, etc). Decidi
+não fazer isso agora para acelerar o resto que preciso para terminar o curso. */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    font-size: 62.5%;
+
+    --hue: 310;
+    --delay: .8s;
+    --animation-delay: .6s;
+    --color-base-white: hsl(0, 0%, 100%);
+    --color-base-darkblue: #065E7C;
+    --color-base-lightblue: #387E96;
+}
+
+body, input, .sidebar {
+    font-family: 'Mulish', sans-serif;
+}
+
+#app {
+    display: grid;
+    grid-template-rows: max-content 1fr max-content;
+    height: 100vh;
+}
+
+main {
+    gap: 10rem;
+}
+
+main h1, .heading-buttons, p {
+    padding: 2.2rem;
+}
+
+main img {
+    width: 100%;
+    padding: 0;
+}
+
+main h1 {
+    padding-top: 3.2rem;
+}
+
+
+main p {
+    padding-top: 3.1rem;
+    font-size: 1.6rem;
+}
+
+button {
+    all: unset;
+}
+
+header {
+    padding: 1.6rem 2.8rem;
+    display: flex;
+    align-items: center;    
+    gap: 7.2rem;
+    font-weight: 700;
+    background-color: var(--color-base-darkblue);
+}
+
+header form {
+    flex: 1;
+}
+
+.input-wrapper label {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.input-wrapper input {
+    width: max(10rem, 100%);
+    padding: 1.6rem;
+    background-color: var(--color-base-lightblue);
+    border: 0;
+    border-radius: .6rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-base-white);
+}
+
+.input-wrapper input::placeholder {
+    color: var(--color-base-white);
+}
+
+.avatar {
+    width: 4.2rem;
+    height: 4.2rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.item img {
+    width: 100%;    
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.heading-buttons {
+    display: flex;
+    padding-top: .8rem;
+    gap: 1.2rem;
+}
+
+.sidebar {
+    max-width: 600px;
+    padding: 2.2rem;
+}
+
+.related-articles {
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2.2rem;
+}
+
+figure {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+figure, figure img {    
+    height: max(11rem);
+}
+
+figure img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+figure h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+figure .tags {
+    padding-top: 1rem;
+    font-size: 1.4rem;
+}
+
+.item {
+    overflow: hidden;
+}
+
+figure img {
+    border-radius: .8rem;
+}
+
+footer {
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--color-base-lightblue);
+}
+
+footer p {
+    color: var(--color-base-white);
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 1.6rem;
+}
+
+@media (min-width: 701px) {
+    #app {
+        display: grid;
+        grid-template-areas: 
+        "header header header"
+        "main main sidebar"
+        "main main sidebar"
+        "footer footer footer";
+        height: 100%;
+    }
+
+    header {
+        padding: 1.6rem 10.4rem;
+        grid-area: header;
+    }
+    
+    main {
+        grid-area: main;
+        padding: 4rem 3.2rem 3.2rem 10.4rem;
+    }
+    
+    .main-buttons {
+        padding-top: 3.2rem;
+        max-height: 8rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .heading-buttons {
+        padding: 0;
+    }
+
+    main h1 {
+        padding: 0;
+    }
+
+    main p {
+        padding: 3.2rem 0 0 0;
+    }
+
+    main img {
+        border-radius: .8rem;
+    }
+
+    .main-img {
+        animation: fade-in-right var(--delay) cubic-bezier(0.250, 0.460, 0.450, 0.940) both; 
+    }
+
+    .sidebar {
+        padding-right: 10.4rem;
+        grid-area: sidebar;
+    }
+    
+    footer {
+        grid-area: footer;  
+    }
+    
+    .item img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        display: block;
+        z-index: 1;
+    }
+
+    .item img {
+        animation: fade-in-top var(--delay) cubic-bezier(0.250, 0.460, 0.450, 0.940) both; 
+        animation-delay: var(--animation-delay); 
+    }
+    
+    .item img:hover {
+        animation: shadow-drop-2-center var(--delay) cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation-iteration-count: 1;
+        filter: hue-rotate(7deg) contrast(101%) saturate(175%);
+    }
+
+    .item img:checked
+
+    .details h2, .tags {
+        animation: fade-in-text;
+        animation: fade-in-right-text var(--delay) cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation-delay: var(--animation-delay);
+    }
+}
+
+@keyframes shadow-drop-2-center {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes fade-in-right {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-text {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in-right-text {
+    0% {
+        opacity: 0;
+        transform: translateX(-5rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
